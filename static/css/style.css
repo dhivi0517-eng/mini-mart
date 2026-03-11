@@ -91,6 +91,14 @@ button:hover, .btn:hover{
 transform:scale(1.05);
 box-shadow:0 0 15px #00f5ff;
 }
+input::placeholder{
+    color: black;
+    opacity: 1;
+}
+
+select{
+    color: black;
+}
 
 /* INPUT */
 input,select{
@@ -204,4 +212,5 @@ color:#00f5ff;
 h1,h2,h3{
 margin-bottom:15px;
 font-weight:600;
+
 }
