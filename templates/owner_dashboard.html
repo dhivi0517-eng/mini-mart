@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>{{ shop.name }} Dashboard</h2>
+
+<a class="btn" href="{{ url_for('add_product') }}">Add Product</a>
+
+<h3>Your Products</h3>
+<div class="card-grid">
+{% for product in products %}
+<div class="glass-card">
+    <h4>{{ product.name }}</h4>
+    <p>₹ {{ product.price }}</p>
+    <p>Stock: {{ product.stock }}</p>
+</div>
+{% endfor %}
+</div>
+
+<h3>Orders</h3>
+<h2>Order History</h2>
+
+{% for o in orders %}
+<div class="order-card">
+
+<h3>Order #{{ o.id }}</h3>
+
+<p>Customer: {{ o.customer.username }}</p>
+<p>Customer ID: {{ o.customer.customer_code }}</p>
+<p>Total: ₹{{ o.total }}</p>
+
+<p>
+Status:
+<span class="status {{ o.status }}">{{ o.status }}</span>
+</p>
+
+{% if o.status == "Pending" %}
+<a href="/update_status/{{ o.id }}" class="btn">
+Mark as Ready
+</a>
+{% endif %}
+
+<hr>
+
+{% for item in o.items %}
+<p>{{ item.product.name }} × {{ item.quantity }}</p>
+{% endfor %}
+
+</div>
+{% endfor %}
+{% for order in orders %}
+<div class="glass-card">
+    <p><b>Order ID:</b> {{ order.id }}</p>
+    <p><b>Customer:</b> {{ order.customer.username }}</p>
+    <p><b>Payment:</b> {{ order.payment_method }}</p>
+    <p><b>Total:</b> ₹ {{ order.total }}</p>
+    <p><b>Status:</b> {{ order.status }}</p>
+
+    <ul>
+    {% for item in order.items %}
+        <li>{{ item.product.name }} × {{ item.quantity }}</li>
+    {% endfor %}
+    </ul>
+
+    {% if order.status == "Pending" %}
+    <a class="btn" href="{{ url_for('update_status', order_id=order.id) }}">Mark Ready</a>
+    {% endif %}
+</div>
+{% endfor %}
+
+{% endblock %}

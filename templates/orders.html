@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="glass center-box">
+<h2>My Order History</h2>
+
+{% for o in orders %}
+<div class="order-card">
+
+<h3>Order #{{ o.id }}</h3>
+
+<p><b>Total:</b> ₹{{ o.total }}</p>
+<p><b>Payment:</b> {{ o.payment_method }}</p>
+
+<p>
+Status:
+<span class="status {{ o.status }}">{{ o.status }}</span>
+</p>
+
+<hr>
+
+<h4>Items:</h4>
+{% for item in o.items %}
+<p>{{ item.product.name }} × {{ item.quantity }}</p>
+{% endfor %}
+
+</div>
+{% else %}
+<p>No Orders Yet</p>
+{% endfor %}
+
+</div>
+
+{% endblock %}

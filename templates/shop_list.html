@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Select Shop</h2>
+
+<div class="card-grid">
+{% for shop in shops %}
+<div class="glass-card">
+    <h3>{{ shop.name }}</h3>
+    <p>{{ shop.address }}</p>
+    <p><b>Code:</b> {{ shop.shop_code }}</p>
+    <a class="btn" href="{{ url_for('shop_products', shop_id=shop.id) }}">Enter Shop</a>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="glass-card">
+<h2>Register</h2>
+
+<form method="POST">
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password" placeholder="Password" required>
+
+    <select name="role" id="roleSelect" onchange="toggleShop()" required>
+        <option value="">Select Role</option>
+        <option value="owner">Owner</option>
+        <option value="customer">Customer</option>
+    </select>
+
+    <div id="shopFields" style="display:none;">
+        <input type="text" name="shop_name" placeholder="Shop Name">
+        <input type="text" name="shop_address" placeholder="Shop Address">
+    </div>
+
+    <button class="btn">Register</button>
+</form>
+</div>
+
+<script>
+function toggleShop(){
+    let role = document.getElementById("roleSelect").value;
+    document.getElementById("shopFields").style.display =
+        role === "owner" ? "block" : "none";
+}
+</script>
+{% endblock %}

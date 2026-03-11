@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="glass-card">
+<h2>Add Product</h2>
+<form method="POST" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Product Name" required>
+    <input type="text" name="description" placeholder="Description" required>
+    <input type="number" name="price" placeholder="Price" required>
+    <input type="number" name="stock" placeholder="Stock" required>
+    <input type="file" name="image" required>
+    <button class="btn">Add Product</button>
+</form>
+</div>
+{% endblock %}

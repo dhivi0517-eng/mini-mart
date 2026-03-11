@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="page-title">{{ shop.name }} Products</h2>
+
+<div class="product-grid">
+
+    {% for p in products %}
+    <div class="product-card">
+
+        {% if p.image %}
+        <img src="{{ url_for('static', filename='uploads/' + p.image) }}" class="product-img">
+        {% endif %}
+
+        <div class="product-info">
+            <h3>{{ p.name }}</h3>
+            <p>{{ p.description }}</p>
+            <p class="price">₹ {{ p.price }}</p>
+
+            <form action="{{ url_for('add_to_cart', product_id=p.id) }}" method="POST">
+                <input type="number" name="quantity" value="1" min="1" required>
+                <button type="submit" class="btn">Add to Cart</button>
+            </form>
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
